@@ -5,7 +5,7 @@ import Link from "next/link";
 import { trainings } from "@/data/trainings";
 import type { Training } from "@/data/trainings";
 
-const categories = ["All", "Leadership", "Communication", "Behavioral", "Team Building", "Specialized"] as const;
+const categories = ["All", "Communication", "Leadership", "Sales & Negotiation", "Team Building", "Soft Skills", "Productivity", "Motivation", "Student & Faculty", "Workplace Culture", "Industry-Specific"] as const;
 
 export default function PeoplePage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
