@@ -1,66 +1,29 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import { solutions } from "@/data/solutions";
+import type { Solution } from "@/data/solutions";
 
-export const metadata: Metadata = {
-  title: "Systems & Automation — The Future Corporate",
-  description:
-    "AI-powered business portals, CRM & sales funnels, HR automation, WhatsApp & email systems, KYC integration, and custom dashboards for SMEs and startups.",
-};
-
-const services = [
-  {
-    title: "AI-Powered Business Portals",
-    description:
-      "Custom web portals with AI integrations that automate client interactions, lead qualification, and service delivery. Built to scale with your business.",
-    icon: "🤖",
-  },
-  {
-    title: "CRM & Sales Funnels",
-    description:
-      "End-to-end sales pipeline management — from lead capture to conversion. Automated follow-ups, deal tracking, and performance analytics.",
-    icon: "📊",
-  },
-  {
-    title: "HR & Payroll Automation",
-    description:
-      "Automate attendance, leave management, payroll processing, and compliance. Free your HR team to focus on people, not paperwork.",
-    icon: "👥",
-  },
-  {
-    title: "Onboarding Systems",
-    description:
-      "Streamlined employee and client onboarding flows that reduce time-to-value and improve first impressions. Digital, trackable, and consistent.",
-    icon: "🚀",
-  },
-  {
-    title: "WhatsApp & Email Automation",
-    description:
-      "Automated customer communication through WhatsApp Business API and email sequences. Nurture leads, send updates, and close deals on autopilot.",
-    icon: "💬",
-  },
-  {
-    title: "KYC Integration",
-    description:
-      "Digital KYC verification integrated into your workflows. Aadhaar, PAN, GST, and bank verification APIs — compliant and fast.",
-    icon: "🔐",
-  },
-  {
-    title: "Custom Dashboards",
-    description:
-      "Real-time business intelligence dashboards that pull data from all your systems. See what matters, when it matters, in one place.",
-    icon: "📈",
-  },
-];
-
-const targets = [
-  "Small & Medium Enterprises (SMEs)",
-  "Training Institutes & Ed-Tech",
-  "Startups & Scale-ups",
-  "Professional Service Firms",
-  "Manufacturing & Distribution",
-];
+const categories = [
+  "All",
+  "AI Portals",
+  "CRM & Sales",
+  "HR & Operations",
+  "Communication",
+  "Data & Analytics",
+  "Website & Digital",
+  "Industry Solutions",
+] as const;
 
 export default function SystemsPage() {
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  const filtered: Solution[] =
+    activeCategory === "All"
+      ? solutions
+      : solutions.filter((s) => s.category === activeCategory);
+
   return (
     <>
       {/* Hero */}
@@ -71,47 +34,176 @@ export default function SystemsPage() {
               Systems & Automation
             </span>
             <h1 className="text-3xl md:text-5xl font-bold text-white mt-3 mb-6">
-              Your Business Runs on People.{" "}
-              <span className="text-gold">
-                Your Operations Should Run on Systems.
-              </span>
+              AI-Powered Solutions That Make Your Business{" "}
+              <span className="text-gold">Run on Autopilot</span>
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed">
-              We build the digital infrastructure that lets your business scale
-              without chaos. AI-powered portals, automated workflows, and
-              custom dashboards — engineered for Indian businesses.
+              {solutions.length}+ AI-powered systems designed for Indian
+              businesses. From intelligent CRMs and HR automation to custom
+              portals and industry-specific solutions — we build the digital
+              infrastructure that lets you scale without chaos.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Link
-                href="https://wa.me/918793630001?text=Hi%2C%20I%27m%20interested%20in%20Systems%20%26%20Automation%20services."
+                href="https://wa.me/918793630001?text=Hi%2C%20I%27m%20interested%20in%20AI-powered%20systems%20and%20automation%20solutions."
                 target="_blank"
                 className="inline-flex items-center justify-center bg-gold hover:bg-gold-dark text-navy-dark px-8 py-3.5 rounded-md font-bold transition-colors"
               >
                 Discuss Your Project
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center border-2 border-gold text-gold px-8 py-3.5 rounded-md font-semibold hover:bg-gold hover:text-navy-dark transition-colors"
+              >
+                Get a Free Consultation
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="py-20 bg-white">
+      {/* Category Filter + Grid */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-navy-dark mb-12">
-            What We Build
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <div
-                key={service.title}
-                className="bg-gray-50 rounded-xl p-8 border border-gray-100 hover:shadow-lg hover:border-gold/20 transition-all"
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap gap-2 mb-12">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
+                  activeCategory === cat
+                    ? "bg-navy text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
               >
-                <span className="text-3xl mb-4 block">{service.icon}</span>
-                <h3 className="text-xl font-bold text-navy-dark mb-3">
-                  {service.title}
+                {cat}
+                {cat !== "All" && (
+                  <span className="ml-1.5 text-xs opacity-60">
+                    ({solutions.filter((s) => s.category === cat).length})
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Solution Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((solution) => (
+              <Link
+                key={solution.slug}
+                href={`/systems/${solution.slug}`}
+                className={`group rounded-xl p-7 border transition-all duration-300 hover:shadow-xl ${
+                  solution.featured
+                    ? "bg-navy-dark text-white border-gold/30 hover:border-gold/60 ring-1 ring-gold/10"
+                    : "bg-white border-gray-100 hover:border-gold/30"
+                }`}
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <span
+                    className={`text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wide ${
+                      solution.featured
+                        ? "bg-gold text-navy-dark"
+                        : "bg-navy/5 text-navy"
+                    }`}
+                  >
+                    {solution.category}
+                  </span>
+                  {solution.featured && (
+                    <span className="text-xs font-bold bg-gold/20 text-gold px-2.5 py-1 rounded-full">
+                      Popular
+                    </span>
+                  )}
+                </div>
+                <div className="text-2xl mb-3">{solution.icon}</div>
+                <h3
+                  className={`text-lg font-bold mb-2 group-hover:text-gold transition-colors ${
+                    solution.featured ? "text-white" : "text-navy-dark"
+                  }`}
+                >
+                  {solution.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {service.description}
+                <p
+                  className={`text-sm leading-relaxed mb-4 ${
+                    solution.featured ? "text-gray-300" : "text-gray-500"
+                  }`}
+                >
+                  {solution.hook}
+                </p>                {solution.startingPrice && (
+                  <p
+                    className={`text-xs font-semibold mb-3 ${
+                      solution.featured ? "text-gold/70" : "text-gray-400"
+                    }`}
+                  >
+                    Starting from {solution.startingPrice}
+                  </p>
+                )}
+                <div
+                  className={`text-sm font-semibold flex items-center gap-1 transition-colors ${
+                    solution.featured
+                      ? "text-gold"
+                      : "text-navy group-hover:text-gold"
+                  }`}
+                >
+                  Explore Solution
+                  <svg
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How We Work */}
+      <section className="py-16 bg-navy-dark">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-12">
+            How We Build Your System
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Discovery",
+                desc: "We audit your current operations, identify bottlenecks, and map the systems that will have the highest impact.",
+              },
+              {
+                step: "02",
+                title: "Design",
+                desc: "We architect the right solution for your specific needs — no templates, no one-size-fits-all, just what works for you.",
+              },
+              {
+                step: "03",
+                title: "Build & Deploy",
+                desc: "We develop, test, and deploy your system — typically within 4-10 weeks. You see progress every week.",
+              },
+              {
+                step: "04",
+                title: "Train & Support",
+                desc: "We train your team, provide documentation, and offer ongoing support to ensure the system delivers results.",
+              },
+            ].map((item) => (
+              <div key={item.step} className="text-center">
+                <div className="text-gold text-3xl font-bold mb-3">
+                  {item.step}
+                </div>
+                <h3 className="text-white font-bold text-lg mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {item.desc}
                 </p>
               </div>
             ))}
@@ -119,69 +211,80 @@ export default function SystemsPage() {
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-20 bg-gray-50">
+      {/* Pricing & Target */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-navy-dark mb-12 text-center">
-            How We Work
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: "01", title: "Discovery", desc: "We audit your current operations and identify bottlenecks." },
-              { step: "02", title: "Design", desc: "We architect the right systems for your specific needs." },
-              { step: "03", title: "Build", desc: "We develop, test, and deploy — typically within 4-8 weeks." },
-              { step: "04", title: "Support", desc: "We train your team and provide ongoing support." },
-            ].map((item) => (
-              <div key={item.step} className="text-center">
-                <span className="text-5xl font-bold text-gold/30">{item.step}</span>
-                <h3 className="text-xl font-bold text-navy-dark mt-2 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Target & Pricing */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-2xl font-bold text-navy-dark mb-6">
-                Who This Is For
+              <h2 className="text-2xl font-bold text-navy-dark mb-4">
+                Who These Systems Are For
               </h2>
               <ul className="space-y-3">
-                {targets.map((t) => (
-                  <li key={t} className="flex items-center gap-3">
+                {[
+                  "Small & Medium Enterprises (SMEs)",
+                  "Training Institutes & Ed-Tech",
+                  "Startups & Scale-ups",
+                  "Professional Service Firms",
+                  "Manufacturing & Distribution",
+                  "Healthcare & Clinics",
+                  "Real Estate & Construction",
+                  "Restaurants & Hospitality",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
                     <span className="w-2 h-2 bg-gold rounded-full flex-shrink-0" />
-                    <span className="text-gray-700">{t}</span>
+                    <span className="text-gray-700">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-navy-dark mb-6">
+              <h2 className="text-2xl font-bold text-navy-dark mb-4">
                 Investment
               </h2>
-              <div className="bg-gray-50 rounded-xl p-8 border border-gray-100">
+              <div className="bg-white rounded-xl p-8 border border-gray-100">
                 <p className="text-3xl font-bold text-navy-dark">
-                  ₹50,000 — ₹3,00,000
+                  ₹75,000 — ₹3,00,000+
                 </p>
-                <p className="text-gray-500 mt-2">
-                  Per project, depending on complexity, integrations, and scope.
+                <p className="text-gray-500 mt-2 mb-6">
+                  Per project, depending on complexity, integrations, number of
+                  users, and customization requirements. All systems include
+                  training and 3 months of post-launch support.
                 </p>
                 <Link
-                  href="https://wa.me/918793630001?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20Systems%20%26%20Automation."
+                  href="https://wa.me/918793630001?text=Hi%2C%20I%27d%20like%20a%20project%20estimate%20for%20an%20AI-powered%20system."
                   target="_blank"
-                  className="mt-6 inline-flex items-center gap-2 bg-navy hover:bg-navy-dark text-white px-6 py-3 rounded-md font-semibold transition-colors"
+                  className="inline-flex items-center gap-2 bg-navy hover:bg-navy-dark text-white px-6 py-3 rounded-md font-semibold transition-colors"
                 >
                   Get a Project Estimate
                 </Link>
               </div>
             </div>
           </div>
+        </div>
+      </section>      {/* CTA Banner */}
+      <section className="bg-gold py-12">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-navy-dark mb-4">
+            Not Sure Which System Your Business Needs?
+          </h2>
+          <p className="text-navy-dark/70 text-lg mb-6">
+            Book a free 30-minute consultation. We&apos;ll audit your operations
+            and recommend the right systems — no obligation, no sales pitch.
+          </p>
+          <Link
+            href="https://wa.me/918793630001?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20consultation%20to%20discuss%20which%20AI%20systems%20would%20benefit%20my%20business."
+            target="_blank"
+            className="inline-flex items-center gap-2 bg-navy-dark hover:bg-navy text-white px-8 py-4 rounded-md font-bold text-lg transition-colors"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            Book Free Consultation on WhatsApp
+          </Link>
         </div>
       </section>
     </>
