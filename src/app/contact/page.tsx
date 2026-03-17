@@ -11,6 +11,8 @@ export default function ContactPage() {
     email: "",
     phone: "",
     company: "",
+    designation: "",
+    audienceType: "",
     service: "",
     message: "",
   });
@@ -21,22 +23,43 @@ export default function ContactPage() {
     if (!form.name || !form.email || !form.message) return;
     setStatus("loading");
     try {
-      const { error } = await supabase.from("leads").insert([
-        {
+      const { data: lead, error: leadError } = await supabase
+        .from("leads")
+        .insert({
+          lead_type: "session",
           name: form.name,
-          email: form.email,
-          phone: form.phone,
           company: form.company,
-          service: form.service,
-          message: form.message,
-        },
-      ]);
-      if (error) {
+          phone: form.phone,
+          email: form.email,
+          designation: form.designation || null,
+          audience_type: form.audienceType || null,
+          source: "website_thefuturecorporate",
+          status: "new",
+          temperature: "warm",
+          topic_interest: form.service || null,
+        })
+        .select()
+        .single();
+
+      if (leadError || !lead) {
         setStatus("error");
-      } else {
-        setStatus("success");
-        setForm({ name: "", email: "", phone: "", company: "", service: "", message: "" });
+        return;
       }
+
+      // Insert note with the message
+      if (form.message.trim()) {
+        await supabase.from("lead_notes").insert({
+          lead_id: lead.id,
+          note_type: "general",
+          content: form.message,
+        });
+      }
+
+      setStatus("success");
+      setForm({
+        name: "", email: "", phone: "", company: "",
+        designation: "", audienceType: "", service: "", message: "",
+      });
     } catch {
       setStatus("error");
     }
@@ -123,6 +146,37 @@ export default function ContactPage() {
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent outline-none"
                       placeholder="Company name"
                     />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Designation
+                    </label>
+                    <input
+                      type="text"
+                      value={form.designation}
+                      onChange={(e) => setForm({ ...form, designation: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent outline-none"
+                      placeholder="e.g. HR Manager, Director"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Audience Type
+                    </label>
+                    <select
+                      value={form.audienceType}
+                      onChange={(e) => setForm({ ...form, audienceType: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-navy focus:border-transparent outline-none bg-white"
+                    >
+                      <option value="">Select audience type</option>
+                      <option value="Corporate">Corporate</option>
+                      <option value="Students">Students</option>
+                      <option value="Entrepreneurs">Entrepreneurs</option>
+                      <option value="Government">Government</option>
+                      <option value="Teachers">Teachers</option>
+                    </select>
                   </div>
                 </div>
                 <div>
