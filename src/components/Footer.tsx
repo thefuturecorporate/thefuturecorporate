@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-navy-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -35,7 +35,6 @@ export default function Footer() {
               {[
                 { href: "/people", label: "People Development" },
                 { href: "/systems", label: "Systems & Automation" },
-                { href: "/arisha-foundation", label: "Arisha Foundation (CSR)" },
                 { href: "/about", label: "About Us" },
                 { href: "/blog", label: "Blog" },
                 { href: "/contact", label: "Contact" },
@@ -49,6 +48,58 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Our Companies */}
+          <div>
+            <h3 className="font-semibold text-gold mb-4">Our Companies</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link
+                  href="https://thefuturecorporate.com"
+                  target="_blank"
+                  className="text-gray-300 hover:text-gold transition-colors"
+                >
+                  The Future Corporate
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://avinashchate.com"
+                  target="_blank"
+                  className="text-gray-300 hover:text-gold transition-colors"
+                >
+                  Avinash Chate
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://abctrainings.in"
+                  target="_blank"
+                  className="text-gray-300 hover:text-gold transition-colors"
+                >
+                  ABC Trainings
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://abctraining.in"
+                  target="_blank"
+                  className="text-gray-300 hover:text-gold transition-colors"
+                >
+                  ABC Training
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/arisha-foundation"
+                  className="text-gray-300 hover:text-gold transition-colors"
+                >
+                  Arisha Foundation{" "}
+                  <span className="text-gray-500 text-xs">(coming soon)</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
