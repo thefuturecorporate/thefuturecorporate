@@ -9,8 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        navy: {
+          DEFAULT: "#1B4F72",
+          light: "#2471A3",
+          dark: "#154360",
+        },
+        gold: {
+          DEFAULT: "#C9A84C",
+          light: "#D4B96A",
+          dark: "#B8963A",
+        },
+      },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
       },
     },
   },
