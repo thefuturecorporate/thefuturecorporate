@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 
 interface BlogPost {
   id: string;
@@ -23,9 +24,11 @@ export default function AdminBlog() {
   const [saving, setSaving] = useState(false);
 
   async function loadPosts() {
-    const res = await fetch("/api/admin/blog");
-    const data = await res.json();
-    if (Array.isArray(data)) setPosts(data);
+    const { data } = await supabase
+      .from("blog_posts")
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (data) setPosts(data);
     setLoading(false);
   }
 
@@ -42,14 +45,29 @@ export default function AdminBlog() {
 
   async function handleSave() {
     setSaving(true);
-    const method = editing ? "PUT" : "POST";
-    const body = editing ? { ...form, id: editing.id } : form;
-
-    await fetch("/api/admin/blog", {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
+    if (editing) {
+      await supabase
+        .from("blog_posts")
+        .update({
+          title: form.title,
+          slug: form.slug,
+          excerpt: form.excerpt,
+          content: form.content,
+          published: form.published,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", editing.id);
+    } else {
+      await supabase.from("blog_posts").insert([
+        {
+          title: form.title,
+          slug: form.slug,
+          excerpt: form.excerpt,
+          content: form.content,
+          published: form.published,
+        },
+      ]);
+    }
 
     setSaving(false);
     setShowForm(false);

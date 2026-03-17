@@ -1,46 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isAuth, setIsAuth] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
   const pathname = usePathname();
 
-  useEffect(() => {
-    // Check if already authenticated by trying an admin endpoint
-    fetch("/api/admin/leads")
-      .then((res) => {
-        if (res.ok) setIsAuth(true);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  async function handleLogin(e: React.FormEvent) {
+  function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    const res = await fetch("/api/admin/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
-    if (res.ok) {
+    if (password === ADMIN_PASSWORD) {
       setIsAuth(true);
     } else {
       setError("Invalid password");
     }
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    );
   }
 
   if (!isAuth) {

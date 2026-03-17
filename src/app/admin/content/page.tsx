@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 
 interface ContentItem {
   id: string;
@@ -22,9 +23,8 @@ export default function AdminContent() {
   const [editValues, setEditValues] = useState<Record<string, string>>({});
 
   async function loadContent() {
-    const res = await fetch("/api/admin/content");
-    const data = await res.json();
-    if (Array.isArray(data)) {
+    const { data } = await supabase.from("site_content").select("*");
+    if (data) {
       setItems(data);
       const values: Record<string, string> = {};
       data.forEach((item: ContentItem) => {
@@ -41,11 +41,12 @@ export default function AdminContent() {
 
   async function handleSave(key: string) {
     setSaving(key);
-    await fetch("/api/admin/content", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ key, value: editValues[key] }),
-    });
+    await supabase
+      .from("site_content")
+      .upsert(
+        { key, value: editValues[key], updated_at: new Date().toISOString() },
+        { onConflict: "key" }
+      );
     setSaving(null);
     loadContent();
   }

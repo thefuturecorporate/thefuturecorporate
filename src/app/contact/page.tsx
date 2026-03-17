@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
+import { supabase } from "@/lib/supabase";
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -17,18 +18,24 @@ export default function ContactPage() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (!form.name || !form.email || !form.message) return;
     setStatus("loading");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
+      const { error } = await supabase.from("leads").insert([
+        {
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          company: form.company,
+          service: form.service,
+          message: form.message,
+        },
+      ]);
+      if (error) {
+        setStatus("error");
+      } else {
         setStatus("success");
         setForm({ name: "", email: "", phone: "", company: "", service: "", message: "" });
-      } else {
-        setStatus("error");
       }
     } catch {
       setStatus("error");

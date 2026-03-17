@@ -1,34 +1,35 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-
-export const metadata: Metadata = {
-  title: "Blog — The Future Corporate",
-  description: "Insights on people development, systems automation, and business transformation.",
-};
-
-export const revalidate = 60;
 
 interface BlogPost {
   id: string;
   title: string;
   slug: string;
   excerpt: string;
+  content: string;
   created_at: string;
 }
 
-async function getPosts(): Promise<BlogPost[]> {
-  const { data } = await supabase
-    .from("blog_posts")
-    .select("id, title, slug, excerpt, created_at")
-    .eq("published", true)
-    .order("created_at", { ascending: false });
+export default function BlogPage() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [activePost, setActivePost] = useState<string | null>(null);
 
-  return data || [];
-}
-
-export default async function BlogPage() {
-  const posts = await getPosts();
+  useEffect(() => {
+    async function loadPosts() {
+      const { data } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("published", true)
+        .order("created_at", { ascending: false });
+      if (data) setPosts(data);
+      setLoading(false);
+    }
+    loadPosts();
+  }, []);
 
   return (
     <>
@@ -48,33 +49,49 @@ export default async function BlogPage() {
 
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {posts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {loading ? (
+            <p className="text-center text-gray-500">Loading posts...</p>
+          ) : posts.length > 0 ? (
+            <div className="space-y-6 max-w-4xl mx-auto">
               {posts.map((post) => (
-                <Link
+                <article
                   key={post.id}
-                  href={`/blog/${post.slug}`}
-                  className="group bg-gray-50 rounded-xl p-8 border border-gray-100 hover:shadow-lg hover:border-gold/20 transition-all"
+                  className="bg-gray-50 rounded-xl border border-gray-100 overflow-hidden"
                 >
-                  <p className="text-sm text-gray-400 mb-3">
-                    {new Date(post.created_at).toLocaleDateString("en-IN", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </p>
-                  <h2 className="text-xl font-bold text-navy-dark group-hover:text-gold transition-colors mb-3">
-                    {post.title}
-                  </h2>
-                  {post.excerpt && (
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {post.excerpt}
+                  <button
+                    onClick={() =>
+                      setActivePost(activePost === post.id ? null : post.id)
+                    }
+                    className="w-full text-left p-8 hover:bg-gray-100 transition-colors"
+                  >
+                    <p className="text-sm text-gray-400 mb-2">
+                      {new Date(post.created_at).toLocaleDateString("en-IN", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
                     </p>
+                    <h2 className="text-xl font-bold text-navy-dark mb-2">
+                      {post.title}
+                    </h2>
+                    {post.excerpt && (
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    <span className="inline-block mt-3 text-navy font-semibold text-sm">
+                      {activePost === post.id ? "Close" : "Read More"} &rarr;
+                    </span>
+                  </button>
+                  {activePost === post.id && (
+                    <div className="px-8 pb-8 border-t border-gray-200 pt-6">
+                      <div
+                        className="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: post.content }}
+                      />
+                    </div>
                   )}
-                  <span className="inline-block mt-4 text-navy font-semibold text-sm group-hover:text-gold transition-colors">
-                    Read More &rarr;
-                  </span>
-                </Link>
+                </article>
               ))}
             </div>
           ) : (

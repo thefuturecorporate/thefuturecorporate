@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 
 interface Lead {
   id: string;
@@ -18,12 +19,15 @@ export default function AdminLeads() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/admin/leads")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) setLeads(data);
-      })
-      .finally(() => setLoading(false));
+    async function loadLeads() {
+      const { data } = await supabase
+        .from("leads")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (data) setLeads(data);
+      setLoading(false);
+    }
+    loadLeads();
   }, []);
 
   if (loading) return <p className="text-gray-500">Loading leads...</p>;
