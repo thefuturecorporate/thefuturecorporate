@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabase";
 
 interface GalleryImage {
   src: string;
-  alt: string;
+  caption: string;
 }
 
 function shuffle<T>(arr: T[]): T[] {
@@ -29,12 +29,12 @@ async function fetchImages(): Promise<GalleryImage[]> {
     .filter((row) => row.image_url)
     .map((row) => ({
       src: row.image_url,
-      alt: row.caption || "Avinash Chate — corporate training and events",
+      caption: row.caption || "",
     }));
 }
 
 export default function RandomGallery({
-  count = 6,
+  count = 4,
   title = "In Action",
   subtitle,
   className = "",
@@ -61,14 +61,12 @@ export default function RandomGallery({
           <h2 className="text-2xl font-bold text-navy-dark mb-8 text-center">
             {title}
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {Array.from({ length: count }).map((_, i) => (
-              <div
-                key={i}
-                className={`bg-gray-100 rounded-xl animate-pulse ${
-                  i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/3]"
-                }`}
-              />
+              <div key={i}>
+                <div className="bg-gray-100 rounded-xl animate-pulse aspect-[4/3]" />
+                <div className="bg-gray-100 rounded h-3 mt-3 w-3/4 animate-pulse" />
+              </div>
             ))}
           </div>
         </div>
@@ -89,23 +87,23 @@ export default function RandomGallery({
             <p className="text-gray-500 mt-2 max-w-xl mx-auto">{subtitle}</p>
           )}
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {photos.map((photo, i) => (
-            <div
-              key={photo.src}
-              className={`rounded-xl overflow-hidden bg-gray-100 ${
-                i === 0 && photos.length > 3
-                  ? "col-span-2 row-span-2"
-                  : ""
-              }`}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                loading={i < 2 ? "eager" : "lazy"}
-                className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
-              />
+            <div key={photo.src}>
+              <div className="rounded-xl overflow-hidden bg-gray-100 aspect-[4/3]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photo.src}
+                  alt={photo.caption || "Avinash Chate — corporate training"}
+                  loading={i < 2 ? "eager" : "lazy"}
+                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              {photo.caption && (
+                <p className="text-xs text-gray-400 mt-2 leading-snug line-clamp-2">
+                  {photo.caption}
+                </p>
+              )}
             </div>
           ))}
         </div>

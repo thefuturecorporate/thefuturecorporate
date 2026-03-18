@@ -181,7 +181,7 @@ export default function AboutPage() {
       </section>
 
       <RandomGallery
-        count={6}
+        count={4}
         title="In Action"
         subtitle="Training sessions, keynotes, and workshops across India"
         className="bg-gray-50"
