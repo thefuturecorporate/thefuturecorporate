@@ -26,7 +26,7 @@ export default function Navbar() {
               alt="The Future Corporate"
               width={50}
               height={50}
-              className="object-contain"
+              className="object-contain brightness-0 invert"
             />
             <div className="hidden sm:block">
               <span className="text-white font-bold text-lg leading-tight block">
