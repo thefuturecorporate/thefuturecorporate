@@ -129,7 +129,8 @@ export default function SystemsPage() {
                   }`}
                 >
                   {solution.hook}
-                </p>                {solution.startingPrice && (
+                </p>
+                {solution.startingPrice && (
                   <p
                     className={`text-xs font-semibold mb-3 ${
                       solution.featured ? "text-gold/70" : "text-gray-400"
@@ -261,7 +262,9 @@ export default function SystemsPage() {
             </div>
           </div>
         </div>
-      </section>      {/* CTA Banner */}
+      </section>
+
+      {/* CTA Banner */}
       <section className="bg-gold py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-navy-dark mb-4">
