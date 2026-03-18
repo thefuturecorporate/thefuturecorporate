@@ -20,16 +20,16 @@ export default function Navbar() {
     <nav className="bg-navy-dark sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3">
             <Image
               src="/the-future-logo.png"
               alt="The Future Corporate"
-              width={50}
-              height={50}
-              className="object-contain brightness-0 invert w-9 h-9 sm:w-[50px] sm:h-[50px] flex-shrink-0"
+              width={40}
+              height={40}
+              className="object-contain brightness-0 invert flex-shrink-0"
             />
-            <div className="min-w-0">
-              <span className="text-white font-bold text-sm sm:text-lg leading-tight block truncate">
+            <div>
+              <span className="text-white font-bold text-sm sm:text-lg leading-tight block">
                 The Future Corporate
               </span>
               <span className="text-gold text-xs tracking-widest uppercase hidden sm:block">
