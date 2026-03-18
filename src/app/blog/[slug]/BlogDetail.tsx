@@ -166,14 +166,7 @@ export default function BlogDetail() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className="prose prose-lg max-w-none text-gray-700 leading-relaxed
-              prose-headings:text-navy-dark prose-headings:font-bold
-              prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-              prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-              prose-p:mb-4
-              prose-strong:text-navy-dark
-              prose-ul:my-4 prose-li:my-1
-              prose-a:text-gold prose-a:no-underline hover:prose-a:underline"
+            className="blog-content"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
