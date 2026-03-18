@@ -14,7 +14,7 @@ export default function Footer() {
                 alt="The Future Corporate"
                 width={40}
                 height={40}
-                className="object-contain brightness-0 invert"
+                className="object-contain invert"
               />
               <div>
                 <span className="font-bold text-lg block">The Future Corporate</span>
