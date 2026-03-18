@@ -1,5 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+
+const STORAGE_BASE =
+  "https://supabase-proxy.avinashchate-abc.workers.dev/storage/v1/object/public";
+
+const galleryPhotos = [
+  {
+    src: `${STORAGE_BASE}/profile-assets/gallery/1773236364782-hqd840pi8k.jpg`,
+    alt: "Avinash Chate conducting a corporate training session",
+  },
+  {
+    src: `${STORAGE_BASE}/profile-assets/gallery/1773236365631-c93pf6i8ww.jpg`,
+    alt: "Avinash Chate speaking at a corporate event",
+  },
+  {
+    src: `${STORAGE_BASE}/profile-assets/gallery/1773236366436-ievco04j1el.jpg`,
+    alt: "Avinash Chate with corporate training participants",
+  },
+  {
+    src: `${STORAGE_BASE}/profile-assets/gallery/1773236362835-djwosi63w57.jpg`,
+    alt: "Avinash Chate at a leadership workshop",
+  },
+  {
+    src: `${STORAGE_BASE}/profile-assets/gallery/1773236364092-w67u12nr8ne.jpg`,
+    alt: "Avinash Chate delivering a keynote address",
+  },
+];
 
 export const metadata: Metadata = {
   title: "About Avinash Bhaskar Chate — The Future Corporate",
@@ -76,22 +103,38 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="bg-navy-dark py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="text-gold text-sm font-semibold uppercase tracking-wider">
-              The Man Behind The Future Corporate
-            </span>
-            <h1 className="text-3xl md:text-5xl font-bold text-white mt-3 mb-6">
-              Avinash Bhaskar Chate
-            </h1>
-            <p className="text-gray-300 text-lg leading-relaxed mb-2">
-              First-Generation Entrepreneur. TEDx Speaker. Published Author.
-              Business Transformation Consultant.
-            </p>
-            <p className="text-gray-400 leading-relaxed">
-              He doesn&apos;t promise to &ldquo;10x your revenue.&rdquo; He
-              promises to understand your business, find what&apos;s broken, and
-              fix it. The growth follows.
-            </p>
+          <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+            {/* Headshot */}
+            <div className="flex-shrink-0">
+              <div className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-gold/20 shadow-2xl">
+                <Image
+                  src={`${STORAGE_BASE}/profile-assets/headshots/1772463022779-5f1g1i4yo.jpg`}
+                  alt="Avinash Bhaskar Chate"
+                  width={256}
+                  height={256}
+                  className="object-cover w-full h-full"
+                  priority
+                />
+              </div>
+            </div>
+            {/* Text */}
+            <div className="flex-1 text-center md:text-left">
+              <span className="text-gold text-sm font-semibold uppercase tracking-wider">
+                The Man Behind The Future Corporate
+              </span>
+              <h1 className="text-3xl md:text-5xl font-bold text-white mt-3 mb-6">
+                Avinash Bhaskar Chate
+              </h1>
+              <p className="text-gray-300 text-lg leading-relaxed mb-2">
+                First-Generation Entrepreneur. TEDx Speaker. Published Author.
+                Business Transformation Consultant.
+              </p>
+              <p className="text-gray-400 leading-relaxed">
+                He doesn&apos;t promise to &ldquo;10x your revenue.&rdquo; He
+                promises to understand your business, find what&apos;s broken,
+                and fix it. The growth follows.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -155,6 +198,33 @@ export default function AboutPage() {
               because of his degrees — they brought him in because he spoke from
               real experience, not textbooks.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery — In Action */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-navy-dark mb-8 text-center">
+            In Action
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+            {galleryPhotos.map((photo, i) => (
+              <div
+                key={i}
+                className={`rounded-xl overflow-hidden ${
+                  i === 0 ? "col-span-2 row-span-2" : ""
+                }`}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={i === 0 ? 600 : 300}
+                  height={i === 0 ? 600 : 300}
+                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
