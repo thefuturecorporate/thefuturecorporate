@@ -11,6 +11,7 @@ function getSupabase() {
   return createClient(supabaseUrl, supabaseKey);
 }
 
+// Generate pages for all current blogs at build time
 export async function generateStaticParams() {
   try {
     const supabase = getSupabase();
@@ -46,8 +47,7 @@ export async function generateMetadata({
 
     if (data) {
       const title = data.meta_title || `${data.title} — The Future Corporate`;
-      const description =
-        data.meta_description || data.excerpt || "";
+      const description = data.meta_description || data.excerpt || "";
       const image =
         data.cover_image ||
         "https://supabase-proxy.avinashchate-abc.workers.dev/storage/v1/object/public/profile-assets/headshots/1772463022779-5f1g1i4yo.jpg";
