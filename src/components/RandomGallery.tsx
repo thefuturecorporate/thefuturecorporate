@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
 const STORAGE_BASE =
@@ -23,24 +22,47 @@ function shuffle<T>(arr: T[]): T[] {
 
 async function fetchImages(): Promise<GalleryImage[]> {
   const images: GalleryImage[] = [];
+  const seenUrls = new Set<string>();
 
-  // Fetch gallery photos
-  const { data: gallery } = await supabase.storage
-    .from("profile-assets")
-    .list("gallery", { limit: 100 });
+  // 1. Fetch from profile_gallery table (R2 + Supabase URLs with captions)
+  const { data: profileGallery } = await supabase
+    .from("profile_gallery")
+    .select("image_url, caption")
+    .eq("is_visible", true);
 
-  if (gallery) {
-    for (const file of gallery) {
-      if (file.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
+  if (profileGallery) {
+    for (const row of profileGallery) {
+      if (row.image_url && !seenUrls.has(row.image_url)) {
+        seenUrls.add(row.image_url);
         images.push({
-          src: `${STORAGE_BASE}/profile-assets/gallery/${file.name}`,
-          alt: "Avinash Chate — training and speaking events",
+          src: row.image_url,
+          alt: row.caption || "Avinash Chate — corporate training and events",
         });
       }
     }
   }
 
-  // Fetch presentation images
+  // 2. Fetch from Supabase storage: profile-assets/gallery
+  const { data: storageGallery } = await supabase.storage
+    .from("profile-assets")
+    .list("gallery", { limit: 100 });
+
+  if (storageGallery) {
+    for (const file of storageGallery) {
+      if (file.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
+        const url = `${STORAGE_BASE}/profile-assets/gallery/${file.name}`;
+        if (!seenUrls.has(url)) {
+          seenUrls.add(url);
+          images.push({
+            src: url,
+            alt: "Avinash Chate — training and speaking events",
+          });
+        }
+      }
+    }
+  }
+
+  // 3. Fetch from Supabase storage: presentations/images
   const { data: presentations } = await supabase.storage
     .from("presentations")
     .list("images", { limit: 200 });
@@ -48,10 +70,14 @@ async function fetchImages(): Promise<GalleryImage[]> {
   if (presentations) {
     for (const file of presentations) {
       if (file.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
-        images.push({
-          src: `${STORAGE_BASE}/presentations/images/${file.name}`,
-          alt: "Corporate training presentation",
-        });
+        const url = `${STORAGE_BASE}/presentations/images/${file.name}`;
+        if (!seenUrls.has(url)) {
+          seenUrls.add(url);
+          images.push({
+            src: url,
+            alt: "Corporate training presentation",
+          });
+        }
       }
     }
   }
@@ -125,11 +151,11 @@ export default function RandomGallery({
                   : ""
               }`}
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={photo.src}
                 alt={photo.alt}
-                width={i === 0 && photos.length > 3 ? 800 : 400}
-                height={i === 0 && photos.length > 3 ? 800 : 300}
+                loading={i < 2 ? "eager" : "lazy"}
                 className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
               />
             </div>
