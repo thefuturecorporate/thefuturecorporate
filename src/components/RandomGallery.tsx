@@ -3,9 +3,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
-const STORAGE_BASE =
-  "https://supabase-proxy.avinashchate-abc.workers.dev/storage/v1/object/public";
-
 interface GalleryImage {
   src: string;
   alt: string;
@@ -21,68 +18,19 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 async function fetchImages(): Promise<GalleryImage[]> {
-  const images: GalleryImage[] = [];
-  const seenUrls = new Set<string>();
-
-  // 1. Fetch from profile_gallery table (R2 + Supabase URLs with captions)
-  const { data: profileGallery } = await supabase
+  const { data } = await supabase
     .from("profile_gallery")
     .select("image_url, caption")
     .eq("is_visible", true);
 
-  if (profileGallery) {
-    for (const row of profileGallery) {
-      if (row.image_url && !seenUrls.has(row.image_url)) {
-        seenUrls.add(row.image_url);
-        images.push({
-          src: row.image_url,
-          alt: row.caption || "Avinash Chate — corporate training and events",
-        });
-      }
-    }
-  }
+  if (!data) return [];
 
-  // 2. Fetch from Supabase storage: profile-assets/gallery
-  const { data: storageGallery } = await supabase.storage
-    .from("profile-assets")
-    .list("gallery", { limit: 100 });
-
-  if (storageGallery) {
-    for (const file of storageGallery) {
-      if (file.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
-        const url = `${STORAGE_BASE}/profile-assets/gallery/${file.name}`;
-        if (!seenUrls.has(url)) {
-          seenUrls.add(url);
-          images.push({
-            src: url,
-            alt: "Avinash Chate — training and speaking events",
-          });
-        }
-      }
-    }
-  }
-
-  // 3. Fetch from Supabase storage: presentations/images
-  const { data: presentations } = await supabase.storage
-    .from("presentations")
-    .list("images", { limit: 200 });
-
-  if (presentations) {
-    for (const file of presentations) {
-      if (file.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
-        const url = `${STORAGE_BASE}/presentations/images/${file.name}`;
-        if (!seenUrls.has(url)) {
-          seenUrls.add(url);
-          images.push({
-            src: url,
-            alt: "Corporate training presentation",
-          });
-        }
-      }
-    }
-  }
-
-  return images;
+  return data
+    .filter((row) => row.image_url)
+    .map((row) => ({
+      src: row.image_url,
+      alt: row.caption || "Avinash Chate — corporate training and events",
+    }));
 }
 
 export default function RandomGallery({
