@@ -10,7 +10,6 @@ export interface Solution {
     | "Industry Solutions"
     | "Website & Digital";
   hook: string;
-  icon: string;
   problem: string[];
   diagnosis: string;
   solution: {
@@ -31,7 +30,6 @@ export const solutions: Solution[] = [
     slug: "ai-business-portal",
     title: "AI-Powered Business Portal",
     category: "AI Portals",
-    icon: "🤖",
     hook: "Your entire business — clients, team, operations — managed from one intelligent portal",
     featured: true,
     problem: [
@@ -75,7 +73,6 @@ export const solutions: Solution[] = [
     slug: "ai-client-portal",
     title: "AI Client Self-Service Portal",
     category: "AI Portals",
-    icon: "🌐",
     hook: "Give your clients 24/7 access to their account, documents, and support — powered by AI",
     problem: [
       "Your clients call or WhatsApp your team for every small query — 'What's the status of my order?', 'Can you resend the invoice?', 'When is my next appointment?' — consuming hours of your team's time that should be spent on high-value work.",
@@ -118,7 +115,6 @@ export const solutions: Solution[] = [
     slug: "ai-knowledge-base",
     title: "AI Knowledge Base & Internal Wiki",
     category: "AI Portals",
-    icon: "🧠",
     hook: "Turn your company's scattered knowledge into an AI-searchable, always-updated internal brain",
     problem: [
       "When key employees leave, critical knowledge walks out the door with them. SOPs exist in people's heads, not in any system. Every departure creates a knowledge vacuum that takes months to fill — if it ever gets filled at all.",
@@ -163,7 +159,6 @@ export const solutions: Solution[] = [
     slug: "ai-crm-sales-funnel",
     title: "AI CRM & Sales Funnel System",
     category: "CRM & Sales",
-    icon: "📊",
     hook: "Stop losing leads. An AI-powered CRM that captures, nurtures, and converts — on autopilot",
     featured: true,
     problem: [
@@ -207,7 +202,6 @@ export const solutions: Solution[] = [
     slug: "ai-lead-capture-landing",
     title: "AI Lead Capture & Landing Pages",
     category: "CRM & Sales",
-    icon: "🎯",
     hook: "High-converting landing pages with AI chatbot that captures and qualifies leads 24/7",
     problem: [
       "Your website gets traffic but doesn't convert. Visitors land, browse for 30 seconds, and leave without taking any action because there's no compelling reason to engage or share their contact information.",
@@ -250,7 +244,6 @@ export const solutions: Solution[] = [
     slug: "ai-proposal-quotation",
     title: "AI Proposal & Quotation Generator",
     category: "CRM & Sales",
-    icon: "📝",
     hook: "Generate professional, customized proposals in minutes — not days — using AI",
     problem: [
       "Creating a proposal takes your team 2-5 days. They start from a template, manually customize it, go back and forth on pricing, and by the time it reaches the client, the momentum is lost and the competitor has already responded.",
@@ -295,7 +288,6 @@ export const solutions: Solution[] = [
     slug: "ai-hr-automation",
     title: "AI HR & Payroll Automation",
     category: "HR & Operations",
-    icon: "👥",
     hook: "Automate attendance, leave, payroll, and compliance — let your HR team focus on people, not paperwork",
     featured: true,
     problem: [
@@ -339,7 +331,6 @@ export const solutions: Solution[] = [
     slug: "ai-employee-onboarding",
     title: "AI Employee Onboarding System",
     category: "HR & Operations",
-    icon: "🚀",
     hook: "Transform chaotic first days into seamless, impressive onboarding experiences",
     problem: [
       "New employees show up on day one to find their desk isn't ready, their email isn't set up, their manager is in a meeting, and nobody seems to know they were joining today. First impressions are being destroyed before the work even begins.",
@@ -382,7 +373,6 @@ export const solutions: Solution[] = [
     slug: "ai-operations-dashboard",
     title: "AI Operations Command Center",
     category: "HR & Operations",
-    icon: "📈",
     hook: "See your entire business in real-time — revenue, team, clients, operations — one dashboard",
     problem: [
       "You ask for a business update and it takes 3-5 days to compile. By the time you see the numbers, they're already old. You're making decisions based on last month's data in a market that changes daily.",
@@ -427,7 +417,6 @@ export const solutions: Solution[] = [
     slug: "ai-whatsapp-automation",
     title: "AI WhatsApp & Email Automation",
     category: "Communication",
-    icon: "💬",
     hook: "Automate customer conversations, follow-ups, and campaigns through WhatsApp and email",
     featured: true,
     problem: [
@@ -471,7 +460,6 @@ export const solutions: Solution[] = [
     slug: "ai-chatbot-customer-support",
     title: "AI Customer Support Chatbot",
     category: "Communication",
-    icon: "🤝",
     hook: "An AI support agent that knows your business inside out — available 24/7 on your website and WhatsApp",
     problem: [
       "Your support team handles the same 20-30 questions over and over. 'What are your timings?', 'How much does this cost?', 'Can I reschedule?', 'What documents do I need?' — each answer takes 5-10 minutes of human time that adds up to hours daily.",
@@ -516,7 +504,6 @@ export const solutions: Solution[] = [
     slug: "ai-data-analytics",
     title: "AI Data Analytics & Reporting",
     category: "Data & Analytics",
-    icon: "📉",
     hook: "Turn your messy data into clear insights and automated reports — with AI doing the analysis",
     problem: [
       "Your data lives in 10 different places — billing software, Excel files, Google Sheets, CRM, HR system — and nobody has a unified view. Every time you need a cross-functional report, it takes days of manual data merging and reconciliation.",
@@ -559,7 +546,6 @@ export const solutions: Solution[] = [
     slug: "ai-inventory-management",
     title: "AI Inventory & Stock Management",
     category: "Data & Analytics",
-    icon: "📦",
     hook: "AI-powered inventory tracking that predicts demand, prevents stockouts, and optimizes your supply chain",
     problem: [
       "You either have too much stock (tying up capital) or too little (losing sales). The balance between overstocking and understocking is managed by gut feeling and past experience rather than data and algorithms.",
@@ -604,7 +590,6 @@ export const solutions: Solution[] = [
     slug: "ai-business-website",
     title: "AI-Powered Business Website",
     category: "Website & Digital",
-    icon: "🌍",
     hook: "Not just a website — a 24/7 sales machine with AI chatbot, lead capture, and SEO built in",
     problem: [
       "Your website looks like it was built in 2015. It's slow, not mobile-friendly, has outdated content, and makes your business look less professional than it actually is. First-time visitors form impressions in 3 seconds — and yours isn't great.",
@@ -647,7 +632,6 @@ export const solutions: Solution[] = [
     slug: "ai-ecommerce-store",
     title: "AI E-Commerce & Online Store",
     category: "Website & Digital",
-    icon: "🛒",
     hook: "Launch your online store with AI product recommendations, smart search, and automated order management",
     problem: [
       "You're selling offline only and watching competitors capture the online market. Customers are searching for your products on Google and finding someone else. Every day without an online presence is revenue lost permanently.",
@@ -692,7 +676,6 @@ export const solutions: Solution[] = [
     slug: "ai-training-institute-management",
     title: "AI Training Institute Management System",
     category: "Industry Solutions",
-    icon: "🎓",
     hook: "Complete management system for training companies — batches, students, trainers, certificates, and payments",
     featured: true,
     problem: [
@@ -738,7 +721,6 @@ export const solutions: Solution[] = [
     slug: "ai-real-estate-crm",
     title: "AI Real Estate Management System",
     category: "Industry Solutions",
-    icon: "🏢",
     hook: "Property listings, client matching, site visit scheduling, and deal tracking — all AI-powered",
     problem: [
       "Property data lives in your team's heads and phone galleries. When a client asks 'Do you have a 3BHK in Baner under ₹1.2 Cr?', the agent scrolls through WhatsApp forwards and personal notes instead of searching a proper database.",
@@ -781,7 +763,6 @@ export const solutions: Solution[] = [
     slug: "ai-healthcare-clinic-management",
     title: "AI Healthcare & Clinic Management",
     category: "Industry Solutions",
-    icon: "🏥",
     hook: "Patient management, appointments, prescriptions, and billing — with AI assistance for better care",
     problem: [
       "Appointment scheduling is phone-based chaos. Patients call, the receptionist checks a register or basic software, books the slot, and writes it on a paper backup. Double bookings, no-shows, and scheduling gaps waste the doctor's most valuable resource — time.",
@@ -824,7 +805,6 @@ export const solutions: Solution[] = [
     slug: "ai-manufacturing-operations",
     title: "AI Manufacturing Operations System",
     category: "Industry Solutions",
-    icon: "🏭",
     hook: "Production tracking, quality management, and supply chain optimization — powered by AI",
     problem: [
       "Production tracking is done on paper registers and whiteboards. Real-time visibility into what's being produced, at what rate, with what quality — doesn't exist. You find out about issues hours or days after they occur.",
@@ -869,7 +849,6 @@ export const solutions: Solution[] = [
     slug: "ai-kyc-compliance",
     title: "AI KYC & Compliance Automation",
     category: "Data & Analytics",
-    icon: "🔐",
     hook: "Automate identity verification, document collection, and compliance checks — fast, accurate, digital",
     problem: [
       "KYC collection is manual — physically collecting Aadhaar copies, PAN cards, bank statements, and address proofs, then manually verifying them by checking details against government databases one document at a time.",
@@ -912,7 +891,6 @@ export const solutions: Solution[] = [
     slug: "ai-restaurant-management",
     title: "AI Restaurant & F&B Management",
     category: "Industry Solutions",
-    icon: "🍽️",
     hook: "Digital menu, orders, kitchen display, billing, and inventory — all connected with AI insights",
     problem: [
       "Order errors happen daily. Waitstaff scribble orders on paper, misread them in the kitchen, forget modifications, and the wrong dish reaches the wrong table. Each error costs ingredients, time, and customer satisfaction.",
@@ -955,7 +933,6 @@ export const solutions: Solution[] = [
     slug: "ai-school-college-erp",
     title: "AI School & College ERP",
     category: "Industry Solutions",
-    icon: "📚",
     hook: "Complete education management — admissions, attendance, fees, exams, and parent communication",
     problem: [
       "Admissions are paper-based and chaotic. Application forms, document collection, fee processing, seat allocation — all managed manually during the most critical period of the academic year. Staff is overwhelmed, parents are frustrated, and data entry errors are rampant.",

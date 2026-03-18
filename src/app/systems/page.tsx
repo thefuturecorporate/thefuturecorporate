@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { solutions } from "@/data/solutions";
 import type { Solution } from "@/data/solutions";
+import SolutionIcon from "@/components/SolutionIcon";
 
 const categories = [
   "All",
@@ -115,7 +116,13 @@ export default function SystemsPage() {
                     </span>
                   )}
                 </div>
-                <div className="text-2xl mb-3">{solution.icon}</div>
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${
+                  solution.featured ? "bg-gold/10" : "bg-navy/5"
+                }`}>
+                  <SolutionIcon slug={solution.slug} className={`w-5 h-5 ${
+                    solution.featured ? "text-gold" : "text-navy"
+                  }`} />
+                </div>
                 <h3
                   className={`text-lg font-bold mb-2 group-hover:text-gold transition-colors ${
                     solution.featured ? "text-white" : "text-navy-dark"

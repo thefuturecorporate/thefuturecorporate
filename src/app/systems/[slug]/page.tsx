@@ -2,6 +2,7 @@ import { solutions } from "@/data/solutions";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import SolutionIcon from "@/components/SolutionIcon";
 
 export function generateStaticParams() {
   return solutions.map((s) => ({ slug: s.slug }));
@@ -61,7 +62,9 @@ export default async function SolutionPage({
                 </span>
               )}
             </div>
-            <div className="text-4xl mb-4">{solution.icon}</div>
+            <div className="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center mb-4">
+              <SolutionIcon slug={solution.slug} className="w-7 h-7 text-gold" />
+            </div>
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
               {solution.title}
             </h1>
@@ -329,7 +332,9 @@ export default async function SolutionPage({
                   <span className="text-xs font-bold bg-navy/5 text-navy px-2.5 py-1 rounded-full uppercase tracking-wide">
                     {s.category}
                   </span>
-                  <div className="text-2xl mt-3 mb-2">{s.icon}</div>
+                  <div className="w-10 h-10 bg-navy/5 rounded-lg flex items-center justify-center mt-3 mb-2">
+                    <SolutionIcon slug={s.slug} className="w-5 h-5 text-navy" />
+                  </div>
                   <h3 className="text-lg font-bold text-navy-dark mb-2 group-hover:text-gold transition-colors">
                     {s.title}
                   </h3>
