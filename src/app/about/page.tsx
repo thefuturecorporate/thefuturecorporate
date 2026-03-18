@@ -1,32 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import RandomGallery from "@/components/RandomGallery";
 
 const STORAGE_BASE =
   "https://supabase-proxy.avinashchate-abc.workers.dev/storage/v1/object/public";
-
-const galleryPhotos = [
-  {
-    src: `${STORAGE_BASE}/profile-assets/gallery/1773236364782-hqd840pi8k.jpg`,
-    alt: "Avinash Chate conducting a corporate training session",
-  },
-  {
-    src: `${STORAGE_BASE}/profile-assets/gallery/1773236365631-c93pf6i8ww.jpg`,
-    alt: "Avinash Chate speaking at a corporate event",
-  },
-  {
-    src: `${STORAGE_BASE}/profile-assets/gallery/1773236366436-ievco04j1el.jpg`,
-    alt: "Avinash Chate with corporate training participants",
-  },
-  {
-    src: `${STORAGE_BASE}/profile-assets/gallery/1773236362835-djwosi63w57.jpg`,
-    alt: "Avinash Chate at a leadership workshop",
-  },
-  {
-    src: `${STORAGE_BASE}/profile-assets/gallery/1773236364092-w67u12nr8ne.jpg`,
-    alt: "Avinash Chate delivering a keynote address",
-  },
-];
 
 export const metadata: Metadata = {
   title: "About Avinash Bhaskar Chate — The Future Corporate",
@@ -202,32 +180,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Gallery — In Action */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-navy-dark mb-8 text-center">
-            In Action
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-            {galleryPhotos.map((photo, i) => (
-              <div
-                key={i}
-                className={`rounded-xl overflow-hidden ${
-                  i === 0 ? "col-span-2 row-span-2" : ""
-                }`}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={i === 0 ? 600 : 300}
-                  height={i === 0 ? 600 : 300}
-                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <RandomGallery
+        count={6}
+        title="In Action"
+        subtitle="Training sessions, keynotes, and workshops across India"
+        className="bg-gray-50"
+      />
 
       {/* The Turning Point */}
       <section className="py-20 bg-gray-50">

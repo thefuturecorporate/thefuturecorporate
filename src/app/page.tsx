@@ -5,6 +5,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import GrowthSection from "@/components/GrowthSection";
 import ClientsSection from "@/components/ClientsSection";
 import CTASection from "@/components/CTASection";
+import RandomGallery from "@/components/RandomGallery";
 
 export default function Home() {
   return (
@@ -15,6 +16,12 @@ export default function Home() {
       <AboutSection />
       <GrowthSection />
       <TestimonialsSection />
+      <RandomGallery
+        count={4}
+        title="Glimpses"
+        subtitle="From training rooms to boardrooms — transforming businesses across India"
+        className="bg-white border-t"
+      />
       <CTASection />
     </>
   );
