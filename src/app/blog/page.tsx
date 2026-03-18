@@ -9,10 +9,8 @@ interface BlogPost {
   title: string;
   slug: string;
   excerpt: string;
-  content: string;
   cover_image: string | null;
   category: string[] | null;
-  tags: string[] | null;
   author: string;
   read_time_minutes: number | null;
   published_at: string;
@@ -22,14 +20,13 @@ interface BlogPost {
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activePost, setActivePost] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadPosts() {
       const { data } = await supabase
         .from("blogs")
         .select(
-          "id, title, slug, excerpt, content, cover_image, category, tags, author, read_time_minutes, published_at, created_at"
+          "id, title, slug, excerpt, cover_image, category, author, read_time_minutes, published_at, created_at"
         )
         .eq("status", "published")
         .eq("site", "thefuturecorporate")
@@ -74,94 +71,66 @@ export default function BlogPage() {
               ))}
             </div>
           ) : posts.length > 0 ? (
-            <>
-              {/* Blog Cards Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {posts.map((post) => (
-                  <article
-                    key={post.id}
-                    className="group cursor-pointer"
-                    onClick={() =>
-                      setActivePost(activePost === post.id ? null : post.id)
-                    }
-                  >
-                    {/* Cover Image */}
-                    {post.cover_image && (
-                      <div className="rounded-xl overflow-hidden aspect-[16/9] bg-gray-100 mb-4">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={post.cover_image}
-                          alt={post.title}
-                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                    )}
-
-                    {/* Meta */}
-                    <div className="flex items-center gap-3 mb-2">
-                      {post.category && post.category[0] && (
-                        <span className="text-xs font-bold text-gold uppercase tracking-wide">
-                          {post.category[0]}
-                        </span>
-                      )}
-                      <span className="text-xs text-gray-400">
-                        {new Date(
-                          post.published_at || post.created_at
-                        ).toLocaleDateString("en-IN", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        })}
-                      </span>
-                      {post.read_time_minutes && (
-                        <span className="text-xs text-gray-400">
-                          {post.read_time_minutes} min read
-                        </span>
-                      )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {posts.map((post) => (
+                <Link
+                  key={post.id}
+                  href={`/blog/${post.slug}`}
+                  className="group"
+                >
+                  {/* Cover Image */}
+                  {post.cover_image && (
+                    <div className="rounded-xl overflow-hidden aspect-[16/9] bg-gray-100 mb-4">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={post.cover_image}
+                        alt={post.title}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                      />
                     </div>
+                  )}
 
-                    {/* Title */}
-                    <h2 className="text-lg font-bold text-navy-dark mb-2 group-hover:text-gold transition-colors leading-snug">
-                      {post.title}
-                    </h2>
-
-                    {/* Excerpt */}
-                    {post.excerpt && (
-                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">
-                        {post.excerpt}
-                      </p>
+                  {/* Meta */}
+                  <div className="flex items-center gap-3 mb-2">
+                    {post.category && post.category[0] && (
+                      <span className="text-xs font-bold text-gold uppercase tracking-wide">
+                        {post.category[0]}
+                      </span>
                     )}
-
-                    <span className="inline-block mt-3 text-navy font-semibold text-sm group-hover:text-gold transition-colors">
-                      {activePost === post.id ? "Close" : "Read Article"}{" "}
-                      &rarr;
+                    <span className="text-xs text-gray-400">
+                      {new Date(
+                        post.published_at || post.created_at
+                      ).toLocaleDateString("en-IN", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
                     </span>
-
-                    {/* Expanded Content */}
-                    {activePost === post.id && (
-                      <div className="mt-6 border-t border-gray-100 pt-6">
-                        <div
-                          className="prose prose-lg max-w-none text-gray-700 leading-relaxed"
-                          dangerouslySetInnerHTML={{ __html: post.content }}
-                        />
-                        {post.tags && post.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mt-6 pt-4 border-t border-gray-100">
-                            {post.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-xs bg-gray-100 text-gray-500 px-3 py-1 rounded-full"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                    {post.read_time_minutes && (
+                      <span className="text-xs text-gray-400">
+                        {post.read_time_minutes} min read
+                      </span>
                     )}
-                  </article>
-                ))}
-              </div>
-            </>
+                  </div>
+
+                  {/* Title */}
+                  <h2 className="text-lg font-bold text-navy-dark mb-2 group-hover:text-gold transition-colors leading-snug">
+                    {post.title}
+                  </h2>
+
+                  {/* Excerpt */}
+                  {post.excerpt && (
+                    <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                  )}
+
+                  <span className="inline-block mt-3 text-navy font-semibold text-sm group-hover:text-gold transition-colors">
+                    Read Article &rarr;
+                  </span>
+                </Link>
+              ))}
+            </div>
           ) : (
             <div className="text-center py-16">
               <p className="text-gray-500 text-lg">
