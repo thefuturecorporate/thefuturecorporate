@@ -9,15 +9,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-white rounded-lg p-1 flex-shrink-0">
-                <Image
-                  src="/the-future-logo.png"
-                  alt="The Future Corporate"
-                  width={40}
-                  height={40}
-                  className="object-contain w-full h-full"
-                />
-              </div>
+              <Image
+                src="/the-future-logo.png"
+                alt="The Future Corporate"
+                width={40}
+                height={40}
+                className="object-contain brightness-0 invert"
+              />
               <div>
                 <span className="font-bold text-lg block">The Future Corporate</span>
                 <span className="text-gold text-xs tracking-widest uppercase">

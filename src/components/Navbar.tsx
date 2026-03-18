@@ -21,15 +21,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-11 h-11 bg-white rounded-lg p-1 flex-shrink-0">
-              <Image
-                src="/the-future-logo.png"
-                alt="The Future Corporate"
-                width={50}
-                height={50}
-                className="object-contain w-full h-full"
-              />
-            </div>
+            <Image
+              src="/the-future-logo.png"
+              alt="The Future Corporate"
+              width={50}
+              height={50}
+              className="object-contain brightness-0 invert"
+            />
             <div className="hidden sm:block">
               <span className="text-white font-bold text-lg leading-tight block">
                 The Future Corporate
