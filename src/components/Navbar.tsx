@@ -28,11 +28,11 @@ export default function Navbar() {
               height={50}
               className="object-contain brightness-0 invert"
             />
-            <div className="hidden sm:block">
-              <span className="text-white font-bold text-lg leading-tight block">
+            <div>
+              <span className="text-white font-bold text-sm sm:text-lg leading-tight block">
                 The Future Corporate
               </span>
-              <span className="text-gold text-xs tracking-widest uppercase">
+              <span className="text-gold text-xs tracking-widest uppercase hidden sm:block">
                 People. Systems. Growth.
               </span>
             </div>
