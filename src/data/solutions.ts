@@ -22,7 +22,6 @@ export interface Solution {
     outcomes: string[];
   };
   featured?: boolean;
-  startingPrice?: string;
 }
 
 export const solutions: Solution[] = [
@@ -35,7 +34,6 @@ export const solutions: Solution[] = [
     icon: "🤖",
     hook: "Your entire business — clients, team, operations — managed from one intelligent portal",
     featured: true,
-    startingPrice: "₹2,50,000",
     problem: [
       "Your business runs on 15 different tools — a spreadsheet here, a WhatsApp group there, a shared Google Drive nobody maintains, and email threads that go back months. Every piece of critical information lives in someone's head or someone's phone.",
       "Client interactions are scattered across platforms. Sales conversations happen on WhatsApp, documents are emailed, invoices are generated manually, and nobody can tell you the complete history of any client relationship without spending an hour digging through messages.",
@@ -79,7 +77,6 @@ export const solutions: Solution[] = [
     category: "AI Portals",
     icon: "🌐",
     hook: "Give your clients 24/7 access to their account, documents, and support — powered by AI",
-    startingPrice: "₹1,50,000",
     problem: [
       "Your clients call or WhatsApp your team for every small query — 'What's the status of my order?', 'Can you resend the invoice?', 'When is my next appointment?' — consuming hours of your team's time that should be spent on high-value work.",
       "Document sharing is a nightmare. Clients lose emails with attachments, can't find their contracts, request the same documents repeatedly, and your team spends time being a human file server instead of doing actual work.",
@@ -123,7 +120,6 @@ export const solutions: Solution[] = [
     category: "AI Portals",
     icon: "🧠",
     hook: "Turn your company's scattered knowledge into an AI-searchable, always-updated internal brain",
-    startingPrice: "₹1,00,000",
     problem: [
       "When key employees leave, critical knowledge walks out the door with them. SOPs exist in people's heads, not in any system. Every departure creates a knowledge vacuum that takes months to fill — if it ever gets filled at all.",
       "New employees take 3-6 months to become productive because there's no centralized knowledge system. They learn by asking colleagues, reading scattered documents, and making mistakes that could have been prevented.",
@@ -170,7 +166,6 @@ export const solutions: Solution[] = [
     icon: "📊",
     hook: "Stop losing leads. An AI-powered CRM that captures, nurtures, and converts — on autopilot",
     featured: true,
-    startingPrice: "₹1,50,000",
     problem: [
       "Leads come in from 5 different sources — website, WhatsApp, social media, referrals, events — and there's no single system tracking them. Some get followed up, some don't, and you have no idea which leads converted or why.",
       "Your sales team follows up when they remember, not when the data tells them to. Hot leads go cold because nobody contacted them within the critical first 2 hours. Warm leads get bombarded with calls at the wrong time.",
@@ -214,7 +209,6 @@ export const solutions: Solution[] = [
     category: "CRM & Sales",
     icon: "🎯",
     hook: "High-converting landing pages with AI chatbot that captures and qualifies leads 24/7",
-    startingPrice: "₹75,000",
     problem: [
       "Your website gets traffic but doesn't convert. Visitors land, browse for 30 seconds, and leave without taking any action because there's no compelling reason to engage or share their contact information.",
       "You're running ads (Google, Meta, Instagram) but sending traffic to a generic homepage that wasn't designed to convert. Your cost-per-lead is 3-5x higher than it should be because the landing experience is broken.",
@@ -258,7 +252,6 @@ export const solutions: Solution[] = [
     category: "CRM & Sales",
     icon: "📝",
     hook: "Generate professional, customized proposals in minutes — not days — using AI",
-    startingPrice: "₹80,000",
     problem: [
       "Creating a proposal takes your team 2-5 days. They start from a template, manually customize it, go back and forth on pricing, and by the time it reaches the client, the momentum is lost and the competitor has already responded.",
       "Proposals are inconsistent. Every team member creates them differently — different formats, different pricing structures, different terms. There's no brand consistency and no way to ensure all relevant information is included.",
@@ -305,7 +298,6 @@ export const solutions: Solution[] = [
     icon: "👥",
     hook: "Automate attendance, leave, payroll, and compliance — let your HR team focus on people, not paperwork",
     featured: true,
-    startingPrice: "₹2,00,000",
     problem: [
       "Your HR team spends 60-70% of their time on administrative tasks — processing leave requests, calculating attendance, running payroll, and managing compliance paperwork — leaving almost no time for actual people development.",
       "Payroll errors happen every month. Someone's overtime wasn't calculated, a deduction was wrong, tax calculations are off, and the HR team spends days reconciling instead of the system getting it right automatically.",
@@ -349,7 +341,6 @@ export const solutions: Solution[] = [
     category: "HR & Operations",
     icon: "🚀",
     hook: "Transform chaotic first days into seamless, impressive onboarding experiences",
-    startingPrice: "₹75,000",
     problem: [
       "New employees show up on day one to find their desk isn't ready, their email isn't set up, their manager is in a meeting, and nobody seems to know they were joining today. First impressions are being destroyed before the work even begins.",
       "The onboarding process takes 2-4 weeks of manual effort from HR, IT, and the hiring manager. Documents are collected piecemeal, training is ad-hoc, and there's no standard process ensuring every new hire gets the same experience.",
@@ -393,7 +384,6 @@ export const solutions: Solution[] = [
     category: "HR & Operations",
     icon: "📈",
     hook: "See your entire business in real-time — revenue, team, clients, operations — one dashboard",
-    startingPrice: "₹1,50,000",
     problem: [
       "You ask for a business update and it takes 3-5 days to compile. By the time you see the numbers, they're already old. You're making decisions based on last month's data in a market that changes daily.",
       "Every department has their own reporting format. Sales sends an Excel, HR sends a PDF, finance sends a different Excel, and operations sends a WhatsApp message. Consolidating everything into a coherent picture is a weekly nightmare.",
@@ -440,7 +430,6 @@ export const solutions: Solution[] = [
     icon: "💬",
     hook: "Automate customer conversations, follow-ups, and campaigns through WhatsApp and email",
     featured: true,
-    startingPrice: "₹1,00,000",
     problem: [
       "Your team manually sends every WhatsApp message and email. Follow-up messages, payment reminders, appointment confirmations, status updates — all typed and sent one by one, consuming hours that could be spent on actual business.",
       "Communication is inconsistent. Different team members send different messages for the same situation. Some clients get timely responses, others wait hours or days. There's no standard, and the experience varies wildly.",
@@ -484,7 +473,6 @@ export const solutions: Solution[] = [
     category: "Communication",
     icon: "🤝",
     hook: "An AI support agent that knows your business inside out — available 24/7 on your website and WhatsApp",
-    startingPrice: "₹80,000",
     problem: [
       "Your support team handles the same 20-30 questions over and over. 'What are your timings?', 'How much does this cost?', 'Can I reschedule?', 'What documents do I need?' — each answer takes 5-10 minutes of human time that adds up to hours daily.",
       "Support is only available during business hours. Queries that come in after 6 PM, on weekends, or during holidays go unanswered until the next business day — by which time the customer has found an alternative or lost interest.",
@@ -530,7 +518,6 @@ export const solutions: Solution[] = [
     category: "Data & Analytics",
     icon: "📉",
     hook: "Turn your messy data into clear insights and automated reports — with AI doing the analysis",
-    startingPrice: "₹1,00,000",
     problem: [
       "Your data lives in 10 different places — billing software, Excel files, Google Sheets, CRM, HR system — and nobody has a unified view. Every time you need a cross-functional report, it takes days of manual data merging and reconciliation.",
       "The person who creates your reports is a bottleneck. When they're busy, on leave, or resign, reporting stops. Critical business intelligence depends on a single person's Excel skills and institutional knowledge.",
@@ -574,7 +561,6 @@ export const solutions: Solution[] = [
     category: "Data & Analytics",
     icon: "📦",
     hook: "AI-powered inventory tracking that predicts demand, prevents stockouts, and optimizes your supply chain",
-    startingPrice: "₹1,25,000",
     problem: [
       "You either have too much stock (tying up capital) or too little (losing sales). The balance between overstocking and understocking is managed by gut feeling and past experience rather than data and algorithms.",
       "Inventory counts are manual and infrequent. By the time you discover a discrepancy, you can't trace when or how it happened. Shrinkage, miscounts, and data entry errors accumulate silently and show up as profit leaks.",
@@ -620,7 +606,6 @@ export const solutions: Solution[] = [
     category: "Website & Digital",
     icon: "🌍",
     hook: "Not just a website — a 24/7 sales machine with AI chatbot, lead capture, and SEO built in",
-    startingPrice: "₹1,00,000",
     problem: [
       "Your website looks like it was built in 2015. It's slow, not mobile-friendly, has outdated content, and makes your business look less professional than it actually is. First-time visitors form impressions in 3 seconds — and yours isn't great.",
       "The website is a digital brochure that does nothing. It has an 'About Us' page, a 'Services' page, a 'Contact Us' form that nobody fills, and that's it. It doesn't generate leads, engage visitors, or contribute to revenue.",
@@ -664,7 +649,6 @@ export const solutions: Solution[] = [
     category: "Website & Digital",
     icon: "🛒",
     hook: "Launch your online store with AI product recommendations, smart search, and automated order management",
-    startingPrice: "₹2,00,000",
     problem: [
       "You're selling offline only and watching competitors capture the online market. Customers are searching for your products on Google and finding someone else. Every day without an online presence is revenue lost permanently.",
       "You tried a basic e-commerce setup but it doesn't convert. The product pages are generic, search is terrible, there are no recommendations, and the checkout process has a 70%+ cart abandonment rate.",
@@ -711,7 +695,6 @@ export const solutions: Solution[] = [
     icon: "🎓",
     hook: "Complete management system for training companies — batches, students, trainers, certificates, and payments",
     featured: true,
-    startingPrice: "₹2,50,000",
     problem: [
       "Batch management is Excel-based chaos. Schedules, attendance, student lists, trainer assignments — all in spreadsheets that nobody maintains properly. Double-bookings happen, schedules conflict, and trainers show up to empty rooms because of miscommunication.",
       "Student lifecycle management doesn't exist. From inquiry to enrollment to training to certification to alumni — every stage is handled separately with no continuity. You can't tell how many inquiries converted or how many alumni re-enrolled.",
@@ -757,7 +740,6 @@ export const solutions: Solution[] = [
     category: "Industry Solutions",
     icon: "🏢",
     hook: "Property listings, client matching, site visit scheduling, and deal tracking — all AI-powered",
-    startingPrice: "₹2,00,000",
     problem: [
       "Property data lives in your team's heads and phone galleries. When a client asks 'Do you have a 3BHK in Baner under ₹1.2 Cr?', the agent scrolls through WhatsApp forwards and personal notes instead of searching a proper database.",
       "Client-property matching is manual guesswork. An agent might have the perfect property for a client registered with a different agent in your firm, but there's no system connecting the dots. Cross-selling within your own team doesn't happen.",
@@ -801,7 +783,6 @@ export const solutions: Solution[] = [
     category: "Industry Solutions",
     icon: "🏥",
     hook: "Patient management, appointments, prescriptions, and billing — with AI assistance for better care",
-    startingPrice: "₹1,75,000",
     problem: [
       "Appointment scheduling is phone-based chaos. Patients call, the receptionist checks a register or basic software, books the slot, and writes it on a paper backup. Double bookings, no-shows, and scheduling gaps waste the doctor's most valuable resource — time.",
       "Patient records are fragmented. Previous prescriptions in one file, lab reports in another, billing in a third system. When a patient walks in, piecing together their complete medical history takes 10-15 minutes of flipping through files.",
@@ -845,7 +826,6 @@ export const solutions: Solution[] = [
     category: "Industry Solutions",
     icon: "🏭",
     hook: "Production tracking, quality management, and supply chain optimization — powered by AI",
-    startingPrice: "₹3,00,000",
     problem: [
       "Production tracking is done on paper registers and whiteboards. Real-time visibility into what's being produced, at what rate, with what quality — doesn't exist. You find out about issues hours or days after they occur.",
       "Quality control is reactive. Defects are discovered during final inspection or worse, by the customer. There's no system predicting quality issues based on process parameters or catching them at the stage where they occur.",
@@ -891,7 +871,6 @@ export const solutions: Solution[] = [
     category: "Data & Analytics",
     icon: "🔐",
     hook: "Automate identity verification, document collection, and compliance checks — fast, accurate, digital",
-    startingPrice: "₹1,50,000",
     problem: [
       "KYC collection is manual — physically collecting Aadhaar copies, PAN cards, bank statements, and address proofs, then manually verifying them by checking details against government databases one document at a time.",
       "Compliance deadlines are tracked in spreadsheets. When regulations change or renewal dates approach, the team scrambles. Missed compliance results in penalties that could have been easily avoided with proper automation.",
@@ -935,7 +914,6 @@ export const solutions: Solution[] = [
     category: "Industry Solutions",
     icon: "🍽️",
     hook: "Digital menu, orders, kitchen display, billing, and inventory — all connected with AI insights",
-    startingPrice: "₹1,25,000",
     problem: [
       "Order errors happen daily. Waitstaff scribble orders on paper, misread them in the kitchen, forget modifications, and the wrong dish reaches the wrong table. Each error costs ingredients, time, and customer satisfaction.",
       "You have no idea what your most profitable dishes are. The menu hasn't been analyzed for food cost vs. selling price optimization. Some popular items are actually losing you money because ingredient costs have risen.",
@@ -979,7 +957,6 @@ export const solutions: Solution[] = [
     category: "Industry Solutions",
     icon: "📚",
     hook: "Complete education management — admissions, attendance, fees, exams, and parent communication",
-    startingPrice: "₹2,50,000",
     problem: [
       "Admissions are paper-based and chaotic. Application forms, document collection, fee processing, seat allocation — all managed manually during the most critical period of the academic year. Staff is overwhelmed, parents are frustrated, and data entry errors are rampant.",
       "Fee collection is a nightmare. Reminders are sent manually, payment tracking is in registers, defaulter lists take hours to generate, and reconciliation with the bank account is a monthly ordeal.",
