@@ -1,0 +1,3 @@
+# Serve blog detail page for any /blog/* URL that doesn't match a static file
+# The client-side JS reads the slug from the URL and fetches content from Supabase
+/blog/* /blog/why-best-employees-quit-not-about-salary.html 200
