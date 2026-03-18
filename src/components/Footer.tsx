@@ -88,7 +88,7 @@ export default function Footer() {
                   target="_blank"
                   className="text-gray-300 hover:text-gold transition-colors"
                 >
-                  ABC Training
+                  CAD & IT Training
                 </Link>
               </li>
               <li>
