@@ -146,7 +146,8 @@ export default function Footer() {
                   @avinashchate on Instagram
                 </Link>
               </li>
-              <li>Wagholi, Pune, Maharashtra, India</li>
+              <li>Pune — Hadapsar, Magarpatta</li>
+              <li>Chh. Sambhajinagar — Kranti Chowk</li>
             </ul>
           </div>
         </div>

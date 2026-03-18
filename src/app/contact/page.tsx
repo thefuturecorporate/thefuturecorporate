@@ -291,33 +291,81 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
-                    <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-navy-dark">Office Location</p>
-                      <p className="text-gray-600">Wagholi, Pune, Maharashtra, India</p>
-                    </div>
-                  </div>
                 </div>
               </div>
 
-              {/* Map */}
-              <div className="rounded-xl overflow-hidden border border-gray-200">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30256.83745853!2d73.96!3d18.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c3c3c3c3c3c3%3A0x0!2sWagholi%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890"
-                  width="100%"
-                  height="300"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Office Location - Wagholi, Pune"
-                />
+              {/* Office Locations */}
+              <div>
+                <h2 className="text-2xl font-bold text-navy-dark mb-6">
+                  Our Offices
+                </h2>
+                <div className="space-y-6">
+                  {/* Pune Office */}
+                  <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                    <div className="flex gap-4 mb-4">
+                      <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-bold text-navy-dark">Pune Office</p>
+                        <p className="text-gray-600 text-sm leading-relaxed mt-1">
+                          Bloom Hotel, ABC Trainings, 1st Floor, S.No. 156/3,
+                          Shree Tower, Pune–Solapur Road, Opp. Vaibhav Theater,
+                          Laxmi Vihar, Magarpatta, Hadapsar, Pune, Maharashtra 411028
+                        </p>
+                      </div>
+                    </div>
+                    <div className="rounded-lg overflow-hidden border border-gray-200">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.5!2d73.9264!3d18.5089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c1e2e2e2e2e1%3A0x0!2sMagarpatta%2C+Hadapsar%2C+Pune!5e0!3m2!1sen!2sin!4v1234567890"
+                        width="100%"
+                        height="200"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Pune Office — Hadapsar, Magarpatta"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Chhatrapati Sambhajinagar Office */}
+                  <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                    <div className="flex gap-4 mb-4">
+                      <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-bold text-navy-dark">
+                          Chhatrapati Sambhajinagar Office
+                        </p>
+                        <p className="text-gray-600 text-sm leading-relaxed mt-1">
+                          103, Arihant Palacio, Behind Raymond Shopee,
+                          Kranti Chowk, Snehnagar, Konkanwadi,
+                          Chhatrapati Sambhajinagar, Maharashtra 431005
+                        </p>
+                      </div>
+                    </div>
+                    <div className="rounded-lg overflow-hidden border border-gray-200">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.0!2d75.3433!3d19.8762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdb9876543210ab%3A0x0!2sKranti+Chowk%2C+Chhatrapati+Sambhajinagar!5e0!3m2!1sen!2sin!4v1234567890"
+                        width="100%"
+                        height="200"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Chhatrapati Sambhajinagar Office — Kranti Chowk"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
