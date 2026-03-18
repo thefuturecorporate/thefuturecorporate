@@ -6,10 +6,25 @@ import RandomGallery from "@/components/RandomGallery";
 const STORAGE_BASE =
   "https://supabase-proxy.avinashchate-abc.workers.dev/storage/v1/object/public";
 
+const ogImage =
+  "https://supabase-proxy.avinashchate-abc.workers.dev/storage/v1/object/public/profile-assets/headshots/1772463022779-5f1g1i4yo.jpg";
+
 export const metadata: Metadata = {
   title: "About Avinash Bhaskar Chate — The Future Corporate",
   description:
     "First-generation entrepreneur, TEDx Speaker, Author, and Business Transformation Consultant. 11+ years of building, failing, learning, and helping businesses grow by fixing their people and systems.",
+  openGraph: {
+    title: "About Avinash Bhaskar Chate — The Future Corporate",
+    description:
+      "First-generation entrepreneur, TEDx Speaker, Author. He doesn't promise to 10x your revenue. He promises to find what's broken and fix it.",
+    url: "https://thefuturecorporate.com/about",
+    images: [{ url: ogImage, width: 800, height: 800, alt: "Avinash Chate" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Avinash Bhaskar Chate — The Future Corporate",
+    images: [ogImage],
+  },
 };
 
 const timeline = [
