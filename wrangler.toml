@@ -1,0 +1,7 @@
+name = "thefuturecorporate"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+NEXT_PUBLIC_SUPABASE_URL = "https://supabase-proxy.avinashchate-abc.workers.dev"
+NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlycGhraGh0bmZvZGdycWN5Z213Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1OTY3NTksImV4cCI6MjA4NzE3Mjc1OX0.bbCl4dr7ATv2DPp3Tm0ImKbqvX35TawjaqR85RSlfu0"
