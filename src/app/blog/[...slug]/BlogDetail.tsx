@@ -22,13 +22,19 @@ interface BlogPost {
 
 export default function BlogDetail() {
   const params = useParams();
-  const slug = params.slug as string;
+  // catch-all route gives slug as array
+  const rawSlug = params.slug;
+  const slug = Array.isArray(rawSlug) ? rawSlug[0] : rawSlug;
 
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadPost() {
+      if (!slug || slug === "_") {
+        setLoading(false);
+        return;
+      }
       const { data } = await supabase
         .from("blogs")
         .select(
@@ -42,7 +48,7 @@ export default function BlogDetail() {
       if (data) setPost(data);
       setLoading(false);
     }
-    if (slug) loadPost();
+    loadPost();
   }, [slug]);
 
   if (loading) {
