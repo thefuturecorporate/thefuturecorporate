@@ -244,21 +244,13 @@ export default async function SolutionPage({
           </div>
 
           {/* Details Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
-            <div className="bg-gray-50 rounded-lg p-6 border border-gray-100">
+          <div className="mb-10">
+            <div className="bg-gray-50 rounded-lg p-6 border border-gray-100 max-w-sm">
               <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
                 Timeline
               </p>
               <p className="text-navy-dark font-semibold">
                 {solution.solution.timeline}
-              </p>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-6 border border-gray-100">
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
-                Tech Stack
-              </p>
-              <p className="text-navy-dark font-semibold text-sm">
-                {solution.solution.techStack}
               </p>
             </div>
           </div>
