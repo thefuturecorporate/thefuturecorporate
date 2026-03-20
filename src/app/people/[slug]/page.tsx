@@ -16,9 +16,33 @@ export async function generateMetadata({
   const training = trainings.find((t) => t.slug === slug);
   if (!training) return { title: "Training Not Found" };
 
+  const ogImage =
+    "https://supabase-proxy.avinashchate-abc.workers.dev/storage/v1/object/public/profile-assets/headshots/1772463022779-5f1g1i4yo.jpg";
+
   return {
     title: `${training.title} — The Future Corporate`,
     description: training.hook,
+    openGraph: {
+      title: `${training.title} — The Future Corporate`,
+      description: training.hook,
+      url: `https://thefuturecorporate.com/people/${slug}`,
+      siteName: "The Future Corporate",
+      type: "article",
+      images: [
+        {
+          url: ogImage,
+          width: 800,
+          height: 800,
+          alt: `${training.title} — The Future Corporate`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${training.title} — The Future Corporate`,
+      description: training.hook,
+      images: [ogImage],
+    },
   };
 }
 

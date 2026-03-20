@@ -17,9 +17,33 @@ export async function generateMetadata({
   const solution = solutions.find((s) => s.slug === slug);
   if (!solution) return { title: "Solution Not Found" };
 
+  const ogImage =
+    "https://supabase-proxy.avinashchate-abc.workers.dev/storage/v1/object/public/profile-assets/headshots/1772463022779-5f1g1i4yo.jpg";
+
   return {
     title: `${solution.title} — The Future Corporate`,
     description: solution.hook,
+    openGraph: {
+      title: `${solution.title} — The Future Corporate`,
+      description: solution.hook,
+      url: `https://thefuturecorporate.com/systems/${slug}`,
+      siteName: "The Future Corporate",
+      type: "article",
+      images: [
+        {
+          url: ogImage,
+          width: 800,
+          height: 800,
+          alt: `${solution.title} — The Future Corporate`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${solution.title} — The Future Corporate`,
+      description: solution.hook,
+      images: [ogImage],
+    },
   };
 }
 
