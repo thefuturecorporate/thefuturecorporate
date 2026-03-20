@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+
 import RandomGallery from "@/components/RandomGallery";
 
 const STORAGE_BASE =
@@ -100,13 +100,12 @@ export default function AboutPage() {
             {/* Headshot */}
             <div className="flex-shrink-0">
               <div className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-gold/20 shadow-2xl">
-                <Image
+                <img
                   src={`${STORAGE_BASE}/profile-assets/headshots/1772463022779-5f1g1i4yo.jpg`}
                   alt="Avinash Bhaskar Chate"
                   width={256}
                   height={256}
                   className="object-cover w-full h-full"
-                  priority
                 />
               </div>
             </div>

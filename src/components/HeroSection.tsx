@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
-
 const STORAGE_BASE =
   "https://supabase-proxy.avinashchate-abc.workers.dev/storage/v1/object/public";
 
@@ -67,13 +65,12 @@ export default function HeroSection() {
           <div className="flex-shrink-0 hidden lg:block">
             <div className="relative">
               <div className="w-72 h-72 xl:w-80 xl:h-80 rounded-2xl overflow-hidden border-2 border-gold/20 shadow-2xl">
-                <Image
+                <img
                   src={`${STORAGE_BASE}/profile-assets/headshots/1772463022779-5f1g1i4yo.jpg`}
                   alt="Avinash Chate — Founder, The Future Corporate"
                   width={320}
                   height={320}
                   className="object-cover w-full h-full"
-                  priority
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-gold text-navy-dark px-4 py-2 rounded-lg font-bold text-sm shadow-lg">
